@@ -1,10 +1,8 @@
 from roteamento import centro_mais_proximo, calcular_rota
 from grafo import criar_grafo
 
-# Lista com os centros de distribuição disponíveis
 centros = ['Belem', 'Recife', 'Brasilia', 'São Paulo', 'Florianópolis']
 
-# Dicionário com diferentes cenários de entregas para testar o sistema
 cenarios = {
     "Cenário 1": [
         {'destino': 'São Paulo', 'peso': 10},
@@ -24,23 +22,22 @@ cenarios = {
     ]
 }
 
-# Função que roda os testes de cada cenário
+
 def testar_cenarios():
-    grafo = criar_grafo()  # Cria o grafo com os dados das cidades
+    grafo = criar_grafo()
 
     for nome, entregas in cenarios.items():
-        print(f"\n== {nome} ==")  # Título do cenário
+        print(f"\n== {nome} ==")
 
         for entrega in entregas:
-            centro = centro_mais_proximo(entrega, centros, grafo)  # Centro mais próximo
-            rota, distancia = calcular_rota(grafo, centro, entrega['destino'])  # Rota ideal
-
-            # Exibe os dados da entrega
-            print(f"\nEntrega para {entrega['destino']}")
-            print(f"Centro mais próximo: {centro}")
-            print(f"Rota: {' -> '.join(rota)}")
-            print(f"Distância total: {distancia} km")
-
-# Roda os testes se o arquivo for executado diretamente
-if __name__ == "__main__":
-    testar_cenarios()
+            centro = centro_mais_proximo(entrega, centros, grafo)
+            if centro:
+                rota, distancia = calcular_rota(
+                    grafo, centro, entrega['destino'])
+                print(f"\nEntrega para {entrega['destino']}")
+                print(f"Centro mais próximo: {centro}")
+                print(f"Rota: {' -> '.join(rota)}")
+                print(f"Distância total: {distancia} km")
+            else:
+                print(
+                    f"\nEntrega para {entrega['destino']} não pode ser realizada. Nenhum centro acessível.")
