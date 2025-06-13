@@ -1,12 +1,10 @@
-import networkx as nx  # Importa o NetworkX, que permite trabalhar com grafos
+import networkx as nx
 
 
 def criar_grafo():
-    # Cria um grafo não-direcionado (as estradas funcionam nos dois sentidos)
     grafo = nx.Graph()
-
-    # Adiciona conexões (arestas) entre cidades com as respectivas distâncias (pesos)
     grafo.add_weighted_edges_from([
+        # Conexões principais
         ('Belem', 'Recife', 2100),
         ('Belem', 'Brasilia', 2200),
         ('Recife', 'Brasilia', 1500),
@@ -15,7 +13,17 @@ def criar_grafo():
         ('São Paulo', 'Florianópolis', 600),
         ('Florianópolis', 'Recife', 2800),
         ('Belem', 'Florianópolis', 3200),
-        # Adicione mais conexões se necessário
-    ])
 
-    return grafo  # Retorna o grafo montado
+        # Novas conexões
+        ('São Paulo', 'Curitiba', 400),
+        ('São Paulo', 'Rio de Janeiro', 430),
+        ('Brasilia', 'Salvador', 1440),
+        ('Recife', 'João Pessoa', 120),
+        ('Natal', 'João Pessoa', 180),
+        ('Fortaleza', 'Natal', 500),
+        ('Curitiba', 'Porto Alegre', 710),
+        ('Vitória', 'Rio de Janeiro', 520),
+        ('Campinas', 'São Paulo', 100),
+        ('Campinas', 'Vitória', 650),
+    ])
+    return grafo
